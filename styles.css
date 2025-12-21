@@ -122,6 +122,11 @@ body {
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
+    z-index: 1001;
+    position: relative;
+    padding: 5px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav-toggle span {
@@ -129,6 +134,7 @@ body {
     height: 2px;
     background: var(--text-primary);
     transition: var(--transition);
+    pointer-events: none;
 }
 
 /* Hero Section */
@@ -817,6 +823,8 @@ section {
         transition: var(--transition);
         padding: 2rem;
         border-top: 1px solid var(--border-color);
+        z-index: 999;
+        box-shadow: var(--shadow-lg);
     }
 
     .nav-menu.active {
@@ -825,6 +833,7 @@ section {
 
     .nav-toggle {
         display: flex;
+        z-index: 1001;
     }
 
     .about-content {
