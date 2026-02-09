@@ -1,6 +1,59 @@
-body { font-family: sans-serif; line-height: 1.6; text-align: center; background: #f4f4f4; padding: 20px; }
-header { background: #333; color: #fff; padding: 20px; border-radius: 8px; }
-section { background: #fff; margin: 20px auto; padding: 20px; max-width: 600px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-ul { text-align: left; list-style: none; padding: 0; }
-li { margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-a { color: #007bff; text-decoration: none; font-weight: bold; }
+:root {
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --text: #f8fafc;
+    --accent: #38bdf8;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.container { max-width: 800px; width: 100%; }
+
+header { text-align: center; margin-bottom: 50px; }
+h1 { font-size: 2.5rem; margin-bottom: 10px; letter-spacing: -1px; }
+.subtitle { color: var(--accent); font-weight: 500; }
+
+.social-links a {
+    color: var(--text);
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+.social-links a:hover { opacity: 1; color: var(--accent); }
+
+.card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+h2 { font-size: 1.25rem; margin-bottom: 20px; border-left: 4px solid var(--accent); padding-left: 10px; }
+
+.skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.skills-grid span {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.project { margin-bottom: 20px; }
+.project h3 { font-size: 1.1rem; margin-bottom: 5px; color: var(--accent); }
+.project p { font-size: 0.95rem; opacity: 0.8; }
+
+footer { text-align: center; margin-top: 40px; font-size: 0.8rem; opacity: 0.5; }
