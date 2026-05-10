@@ -3,518 +3,599 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Micaiah Raj R • AI Engineer</title>
+    <title>MICAIAH RAJ // AI_ENGINEER</title>
     <meta name="description" content="AI & ML Engineer • NLP Specialist • AOSP Developer">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-gradient"></div>
-    <div class="bg-grid"></div>
-    
-    <!-- Floating Orbs -->
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="scanline"></div>
+    <div class="crt-overlay"></div>
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-content">
-            <a href="#" class="nav-brand">
-                <img src="logo.jpg" alt="Logo" class="nav-logo">
-                <span class="nav-name">MICAIAH RAJ</span>
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="#about">About</a>
-                <a href="#work">Work</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills</a>
-                <a href="#contact" class="nav-cta">Contact</a>
-            </div>
-            <button class="nav-burger" id="navBurger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+    <div class="boot-sequence" id="bootSequence">
+        <div class="boot-line" data-delay="0">> SYSTEM INITIALIZING...</div>
+        <div class="boot-line" data-delay="500">> LOADING KERNEL MODULES...</div>
+        <div class="boot-line" data-delay="1000">> ESTABLISHING SECURE CONNECTION...</div>
+        <div class="boot-line" data-delay="1500">> DECRYPTING PORTFOLIO DATA...</div>
+        <div class="boot-line" data-delay="2000" class="boot-success">> ACCESS GRANTED. WELCOME, USER.</div>
+        <div class="boot-line" data-delay="2500" class="boot-prompt">> PRESS ANY KEY TO CONTINUE...</div>
+    </div>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    Available for opportunities
+    <div class="main-content" id="mainContent">
+        <nav class="nav">
+            <div class="nav-content">
+                <a href="#" class="nav-brand">
+                    <span class="prompt-symbol">></span>
+                    <span class="nav-name">micaiah_raj@ai:~$</span>
+                </a>
+                <div class="nav-links" id="navLinks">
+                    <a href="#about">/about</a>
+                    <a href="#work">/experience</a>
+                    <a href="#projects">/projects</a>
+                    <a href="#skills">/skills</a>
+                    <a href="#contact">/contact</a>
                 </div>
-                <h1 class="hero-title">
-                    AI & Machine Learning<br>
-                    <span class="gradient-text">Engineer</span>
-                </h1>
-                <p class="hero-desc">
-                    Crafting intelligent systems at the intersection of NLP, semantic search, 
-                    and Android system architecture. Turning complex problems into elegant solutions.
-                </p>
-                <div class="hero-actions">
-                    <a href="#contact" class="btn btn-primary">
-                        Let's Talk
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-                    <a href="#work" class="btn btn-secondary">View Work</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-value">7.99</div>
-                        <div class="stat-label">CGPA</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">4+</div>
-                        <div class="stat-label">Internships</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">6</div>
-                        <div class="stat-label">Projects</div>
-                    </div>
-                </div>
+                <button class="nav-burger" id="navBurger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            
-            </div>
-        </div>
-    </section>
+        </nav>
 
-    <!-- About -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Who I Am</span>
-                <h2 class="section-title">About Me</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-content">
-                    <p class="about-text">
-                        I'm an AI & ML Engineering graduate from VTU with expertise in building 
-                        intelligent systems that solve real-world problems. My work spans from 
-                        semantic search engines processing 150 years of data to custom Android 
-                        kernels optimized for performance.
-                    </p>
-                    <p class="about-text">
-                        Currently exploring the frontiers of NLP, focusing on FAISS-based semantic 
-                        search, voice assistants, and low-level Android system architecture. 
-                        I believe in clean code, elegant solutions, and continuous learning.
-                    </p>
-                    <div class="about-highlights">
-                        <div class="highlight">
-                            <div class="highlight-icon">🎓</div>
-                            <div>
-                                <h4>Education</h4>
-                                <p>B.E. AI & ML • VTU • 7.99 CGPA</p>
-                            </div>
-                        </div>
-                        <div class="highlight">
-                            <div class="highlight-icon">📍</div>
-                            <div>
-                                <h4>Location</h4>
-                                <p>Bengaluru, India</p>
-                            </div>
-                        </div>
-                        <div class="highlight">
-                            <div class="highlight-icon">🌐</div>
-                            <div>
-                                <h4>Languages</h4>
-                                <p>English, Tamil, Kannada, Hindi</p>
-                            </div>
-                        </div>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        <span class="status-text">STATUS: ONLINE // AVAILABLE FOR OPPORTUNITIES</span>
                     </div>
-                </div>
-                <div class="about-skills-preview">
-                    <div class="skill-card">
-                        <h4>Core Expertise</h4>
-                        <div class="skill-tags">
-                            <span>Machine Learning</span>
-                            <span>NLP</span>
-                            <span>Semantic Search</span>
-                            <span>AOSP Development</span>
-                            <span>Data Analysis</span>
-                            <span>DevOps</span>
+                    <h1 class="hero-title">
+                        <span class="line line-1"><span class="prompt-symbol">$</span> cat README.md</span>
+                        <span class="line line-2"><span class="prompt-symbol">></span> AI & Machine Learning</span>
+                        <span class="line line-3 gradient-text">Engineer</span>
+                    </h1>
+                    <p class="hero-desc typewriter" data-text="Crafting intelligent systems at the intersection of NLP, semantic search, and Android system architecture. Turning complex problems into elegant solutions."></p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary">
+                            <span class="btn-arrow">></span> Initialize Contact
+                        </a>
+                        <a href="#work" class="btn btn-secondary">$ view --experience</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-value">7.99</div>
+                            <div class="stat-label">// CGPA</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">4+</div>
+                            <div class="stat-label">// INTERNSHIPS</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">// PROJECTS</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience -->
-    <section class="section section-dark" id="work">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">My Journey</span>
-                <h2 class="section-title">Experience</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="card-header">
-                            <div>
-                                <h3>ML Intern</h3>
-                                <p class="company">The Hindu Group Publishing</p>
-                            </div>
-                            <span class="date">Jun - Jul 2025</span>
-                        </div>
-                        <p class="card-desc">
-                            Designed scalable semantic search system processing 150 years of historical 
-                            articles using FAISS-based neural retrieval.
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">$ cat /whoami</span>
+                    <h2 class="section-title">About Me</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-content">
+                        <p class="about-text">
+                            <span class="prompt-symbol">></span> I'm an AI & ML Engineering graduate from VTU with expertise in building 
+                            intelligent systems that solve real-world problems. My work spans from 
+                            semantic search engines processing 150 years of data to custom Android 
+                            kernels optimized for performance.
                         </p>
-                        <div class="card-tags">
-                            <span>FAISS</span>
-                            <span>Semantic Search</span>
-                            <span>NLP</span>
-                            <span>Python</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="card-header">
-                            <div>
-                                <h3>AI-DevOps Intern</h3>
-                                <p class="company">Rooman Technologies</p>
-                            </div>
-                            <span class="date">Sep 2024 - Feb 2025</span>
-                        </div>
-                        <p class="card-desc">
-                            Built ML deployment pipelines, DevOps automation, and containerized AI applications 
-                            for production environments.
+                        <p class="about-text">
+                            <span class="prompt-symbol">></span> Currently exploring the frontiers of NLP, focusing on FAISS-based semantic 
+                            search, voice assistants, and low-level Android system architecture. 
+                            I believe in clean code, elegant solutions, and continuous learning.
                         </p>
-                        <div class="card-tags">
-                            <span>Docker</span>
-                            <span>DevOps</span>
-                            <span>ML Deployment</span>
-                            <span>CI/CD</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="card-header">
-                            <div>
-                                <h3>Smart Systems Intern</h3>
-                                <p class="company">Indian Tech-Keys</p>
+                        <div class="about-highlights">
+                            <div class="highlight">
+                                <span class="highlight-icon">></span>
+                                <div>
+                                    <h4>Education</h4>
+                                    <p>B.E. AI & ML // VTU // 7.99 CGPA</p>
+                                </div>
                             </div>
-                            <span class="date">Oct - Nov 2022</span>
-                        </div>
-                        <p class="card-desc">
-                            Developed smart solutions using Python and Android frameworks.
-                        </p>
-                        <div class="card-tags">
-                            <span>Python</span>
-                            <span>Android</span>
-                            <span>Smart Systems</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="card-header">
-                            <div>
-                                <h3>ML Intern</h3>
-                                <p class="company">Verzeo Edutech</p>
+                            <div class="highlight">
+                                <span class="highlight-icon">></span>
+                                <div>
+                                    <h4>Location</h4>
+                                    <p>Bengaluru, India</p>
+                                </div>
                             </div>
-                            <span class="date">Oct - Nov 2022</span>
+                            <div class="highlight">
+                                <span class="highlight-icon">></span>
+                                <div>
+                                    <h4>Languages</h4>
+                                    <p>English, Tamil, Kannada, Hindi</p>
+                                </div>
+                            </div>
                         </div>
-                        <p class="card-desc">
-                            Built foundational ML models and performed comprehensive data analysis.
+                    </div>
+                    <div class="about-skills-preview">
+                        <div class="skill-card terminal-card">
+                            <div class="terminal-header">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                                <span class="terminal-title">core_expertise.sh</span>
+                            </div>
+                            <div class="terminal-body">
+                                <h4>$ cat core_expertise</h4>
+                                <div class="skill-tags">
+                                    <span>Machine Learning</span>
+                                    <span>NLP</span>
+                                    <span>Semantic Search</span>
+                                    <span>AOSP Development</span>
+                                    <span>Data Analysis</span>
+                                    <span>DevOps</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-dark" id="work">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">$ cat /experience.log</span>
+                    <h2 class="section-title">Experience</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card terminal-card">
+                            <div class="terminal-header">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                                <span class="terminal-title">ML Intern — The Hindu Group</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="card-header">
+                                    <div>
+                                        <h3><span class="prompt-symbol">></span> ML Intern</h3>
+                                        <p class="company">@ The Hindu Group Publishing</p>
+                                    </div>
+                                    <span class="date">Jun - Jul 2025</span>
+                                </div>
+                                <p class="card-desc">
+                                    Designed scalable semantic search system processing 150 years of historical 
+                                    articles using FAISS-based neural retrieval.
+                                </p>
+                                <div class="card-tags">
+                                    <span>FAISS</span>
+                                    <span>Semantic Search</span>
+                                    <span>NLP</span>
+                                    <span>Python</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card terminal-card">
+                            <div class="terminal-header">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                                <span class="terminal-title">AI-DevOps Intern — Rooman</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="card-header">
+                                    <div>
+                                        <h3><span class="prompt-symbol">></span> AI-DevOps Intern</h3>
+                                        <p class="company">@ Rooman Technologies</p>
+                                    </div>
+                                    <span class="date">Sep 2024 - Feb 2025</span>
+                                </div>
+                                <p class="card-desc">
+                                    Built ML deployment pipelines, DevOps automation, and containerized AI applications 
+                                    for production environments.
+                                </p>
+                                <div class="card-tags">
+                                    <span>Docker</span>
+                                    <span>DevOps</span>
+                                    <span>ML Deployment</span>
+                                    <span>CI/CD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card terminal-card">
+                            <div class="terminal-header">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                                <span class="terminal-title">Smart Systems Intern — ITK</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="card-header">
+                                    <div>
+                                        <h3><span class="prompt-symbol">></span> Smart Systems Intern</h3>
+                                        <p class="company">@ Indian Tech-Keys</p>
+                                    </div>
+                                    <span class="date">Oct - Nov 2022</span>
+                                </div>
+                                <p class="card-desc">
+                                    Developed smart solutions using Python and Android frameworks.
+                                </p>
+                                <div class="card-tags">
+                                    <span>Python</span>
+                                    <span>Android</span>
+                                    <span>Smart Systems</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card terminal-card">
+                            <div class="terminal-header">
+                                <span class="terminal-dot red"></span>
+                                <span class="terminal-dot yellow"></span>
+                                <span class="terminal-dot green"></span>
+                                <span class="terminal-title">ML Intern — Verzeo</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="card-header">
+                                    <div>
+                                        <h3><span class="prompt-symbol">></span> ML Intern</h3>
+                                        <p class="company">@ Verzeo Edutech</p>
+                                    </div>
+                                    <span class="date">Oct - Nov 2022</span>
+                                </div>
+                                <p class="card-desc">
+                                    Built foundational ML models and performed comprehensive data analysis.
+                                </p>
+                                <div class="card-tags">
+                                    <span>Machine Learning</span>
+                                    <span>Data Analysis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">$ ls -la /projects/</span>
+                    <h2 class="section-title">Projects</h2>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card terminal-card">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">featured -- Internet Addiction Analysis</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="project-badge">#featured</div>
+                            <h3>Internet Addiction & Executive Function Analysis</h3>
+                            <p>
+                                Neural data correlation analyzing memory performance using NumPy and pandas 
+                                to identify psychological trait patterns.
+                            </p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>NumPy</span>
+                                <span>Pandas</span>
+                                <span>IBM SPSS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card terminal-card">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">featured -- Appointment Analytics</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="project-badge">#featured</div>
+                            <h3>Appointment Management & Analytics</h3>
+                            <p>
+                                Automated scheduling system with real-time KPI dashboard using 
+                                Excel-Macros and VBA automation.
+                            </p>
+                            <div class="project-tags">
+                                <span>Excel-Macros</span>
+                                <span>VBA</span>
+                                <span>Automation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card terminal-card">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">aosp -- Custom ROM</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="project-badge">#aosp</div>
+                            <h3>Custom Android ROM & Kernel</h3>
+                            <p>
+                                AOSP-based firmware for Redmi 12C with custom kernel modules for 
+                                enhanced performance and battery life.
+                            </p>
+                            <div class="project-tags">
+                                <span>AOSP</span>
+                                <span>Linux Kernel</span>
+                                <span>Device Trees</span>
+                                <span>C/C++</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card terminal-card">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">published -- Voice Assistant</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="project-badge">#published</div>
+                            <h3>Offline AI Voice Assistant</h3>
+                            <p>
+                                Standalone voice intelligence on Raspberry Pi with Vosk STT, Piper TTS, 
+                                and FAISS semantic search. Published in IJCRT.
+                            </p>
+                            <div class="project-tags">
+                                <span>Raspberry Pi</span>
+                                <span>Vosk</span>
+                                <span>FAISS</span>
+                                <span>NLP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card terminal-card">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">ml -- Car Price Prediction</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="project-badge">#ml</div>
+                            <h3>Car Price Prediction</h3>
+                            <p>
+                                ML regression model predicting used vehicle market values. 
+                                PragyanAI initiative.
+                            </p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>Regression</span>
+                                <span>Scikit-learn</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card terminal-card">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">analysis -- Zomato Data</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="project-badge">#analysis</div>
+                            <h3>Zomato Data Analysis</h3>
+                            <p>
+                                Restaurant intelligence analyzing rating patterns, cuisine preferences, 
+                                and geographic distributions.
+                            </p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>Pandas</span>
+                                <span>Visualization</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-dark" id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">$ cat /skills.yml</span>
+                    <h2 class="section-title">Skills & Technologies</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category terminal-card">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">data_analysis</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="skills-list">
+                                <span>Python</span>
+                                <span>SQL</span>
+                                <span>Excel-Macros</span>
+                                <span>IBM SPSS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category terminal-card">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">machine_learning</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="skills-list">
+                                <span>TensorFlow</span>
+                                <span>NumPy</span>
+                                <span>Pandas</span>
+                                <span>Matplotlib</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category terminal-card">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">nlp_stack</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="skills-list">
+                                <span>FAISS</span>
+                                <span>Vosk (STT)</span>
+                                <span>Piper (TTS)</span>
+                                <span>Hugging Face</span>
+                                <span>NLTK</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category terminal-card">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">devops_tools</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="skills-list">
+                                <span>Docker</span>
+                                <span>Git/GitHub</span>
+                                <span>Linux CLI</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category terminal-card">
+                        <div class="terminal-header">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                            <span class="terminal-title">android_dev</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="skills-list">
+                                <span>AOSP</span>
+                                <span>Custom ROM</span>
+                                <span>Kernel Dev</span>
+                                <span>Device Trees</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certs terminal-card">
+                    <div class="terminal-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">certifications</span>
+                    </div>
+                    <div class="terminal-body">
+                        <h3>$ cat certifications.log</h3>
+                        <div class="cert-list">
+                            <div class="cert-item"><span class="cert-check">[+]</span> IJCRT Publication – Offline Voice Assistant</div>
+                            <div class="cert-item"><span class="cert-check">[+]</span> AI-DevOps Engineer – Rooman Technologies</div>
+                            <div class="cert-item"><span class="cert-check">[+]</span> Skill Competency (IT-ITeS) – NASSCOM</div>
+                            <div class="cert-item"><span class="cert-check">[+]</span> Life Skills – Wadhwani Foundation</div>
+                            <div class="cert-item"><span class="cert-check">[+]</span> Classical Guitarist – Trinity College London (Grades 1-5)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="contact-container">
+                    <div class="contact-content">
+                        <h2>$ ./connect --init</h2>
+                        <p>
+                            Open to AI/ML engineering roles, NLP projects, and Android development opportunities. 
+                            Available for consulting, collaboration, and full-time positions.
                         </p>
-                        <div class="card-tags">
-                            <span>Machine Learning</span>
-                            <span>Data Analysis</span>
-                        </div>
+                    </div>
+                    <div class="contact-links">
+                        <a href="mailto:rmicaiahraj@gmail.com" class="contact-link">
+                            <span class="contact-icon">@</span>
+                            <div>
+                                <span class="link-label">// email</span>
+                                <span class="link-value">rmicaiahraj@gmail.com</span>
+                            </div>
+                        </a>
+
+                        <a href="https://t.me/its_nobody_750" target="_blank" class="contact-link">
+                            <span class="contact-icon">T</span>
+                            <div>
+                                <span class="link-label">// telegram</span>
+                                <span class="link-value">@its_nobody_750</span>
+                            </div>
+                        </a>
+
+                        <a href="https://linkedin.com/in/micaiah-raj-r" target="_blank" class="contact-link">
+                            <span class="contact-icon">in</span>
+                            <div>
+                                <span class="link-label">// linkedin</span>
+                                <span class="link-value">micaiah-raj-r</span>
+                            </div>
+                        </a>
+
+                        <a href="https://micaiah.site" target="_blank" class="contact-link">
+                            <span class="contact-icon">#</span>
+                            <div>
+                                <span class="link-label">// website</span>
+                                <span class="link-value">micaiah.site</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects -->
-    <section class="section" id="projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Featured Work</span>
-                <h2 class="section-title">Projects</h2>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-badge">Featured</div>
-                    <h3>Internet Addiction & Executive Function Analysis</h3>
-                    <p>
-                        Neural data correlation analyzing memory performance using NumPy and pandas 
-                        to identify psychological trait patterns.
-                    </p>
-                    <div class="project-tags">
-                        <span>Python</span>
-                        <span>NumPy</span>
-                        <span>Pandas</span>
-                        <span>IBM SPSS</span>
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        <span class="prompt-symbol">></span>
+                        <p>© 2025 Micaiah Raj R // AI & ML Engineer // Bengaluru, India</p>
                     </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-badge">Featured</div>
-                    <h3>Appointment Management & Analytics</h3>
-                    <p>
-                        Automated scheduling system with real-time KPI dashboard using 
-                        Excel-Macros and VBA automation.
-                    </p>
-                    <div class="project-tags">
-                        <span>Excel-Macros</span>
-                        <span>VBA</span>
-                        <span>Automation</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-badge">AOSP</div>
-                    <h3>Custom Android ROM & Kernel</h3>
-                    <p>
-                        AOSP-based firmware for Redmi 12C with custom kernel modules for 
-                        enhanced performance and battery life.
-                    </p>
-                    <div class="project-tags">
-                        <span>AOSP</span>
-                        <span>Linux Kernel</span>
-                        <span>Device Trees</span>
-                        <span>C/C++</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-badge">Published</div>
-                    <h3>Offline AI Voice Assistant</h3>
-                    <p>
-                        Standalone voice intelligence on Raspberry Pi with Vosk STT, Piper TTS, 
-                        and FAISS semantic search. Published in IJCRT.
-                    </p>
-                    <div class="project-tags">
-                        <span>Raspberry Pi</span>
-                        <span>Vosk</span>
-                        <span>FAISS</span>
-                        <span>NLP</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>Car Price Prediction</h3>
-                    <p>
-                        ML regression model predicting used vehicle market values. 
-                        PragyanAI initiative.
-                    </p>
-                    <div class="project-tags">
-                        <span>Python</span>
-                        <span>Regression</span>
-                        <span>Scikit-learn</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>Zomato Data Analysis</h3>
-                    <p>
-                        Restaurant intelligence analyzing rating patterns, cuisine preferences, 
-                        and geographic distributions.
-                    </p>
-                    <div class="project-tags">
-                        <span>Python</span>
-                        <span>Pandas</span>
-                        <span>Visualization</span>
+                    <div class="footer-right">
+                        <p><span class="blinking-cursor">_</span></p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Skills -->
-    <section class="section section-dark" id="skills">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">What I Do</span>
-                <h2 class="section-title">Skills & Technologies</h2>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Data Analysis</h3>
-                    <div class="skills-list">
-                        <span>Python</span>
-                        <span>SQL</span>
-                        <span>Excel-Macros</span>
-                        <span>IBM SPSS</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Machine Learning</h3>
-                    <div class="skills-list">
-                        <span>TensorFlow</span>
-                        <span>NumPy</span>
-                        <span>Pandas</span>
-                        <span>Matplotlib</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>NLP</h3>
-                    <div class="skills-list">
-                        <span>FAISS</span>
-                        <span>Vosk (STT)</span>
-                        <span>Piper (TTS)</span>
-                        <span>Hugging Face</span>
-                        <span>NLTK</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>DevOps</h3>
-                    <div class="skills-list">
-                        <span>Docker</span>
-                        <span>Git/GitHub</span>
-                        <span>Linux CLI</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Android Development</h3>
-                    <div class="skills-list">
-                        <span>AOSP</span>
-                        <span>Custom ROM</span>
-                        <span>Kernel Dev</span>
-                        <span>Device Trees</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="certs">
-                <h3>Certifications</h3>
-                <div class="cert-list">
-                    <div class="cert-item">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M16.667 5L7.5 14.167L3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>IJCRT Publication – Offline Voice Assistant</span>
-                    </div>
-                    <div class="cert-item">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M16.667 5L7.5 14.167L3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>AI-DevOps Engineer – Rooman Technologies</span>
-                    </div>
-                    <div class="cert-item">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M16.667 5L7.5 14.167L3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>Skill Competency (IT-ITeS) – NASSCOM</span>
-                    </div>
-                    <div class="cert-item">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M16.667 5L7.5 14.167L3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>Life Skills – Wadhwani Foundation</span>
-                    </div>
-                    <div class="cert-item">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M16.667 5L7.5 14.167L3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        <span>Classical Guitarist – Trinity College London (Grades 1-5)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section" id="contact">
-        <div class="container">
-            <div class="contact-container">
-                <div class="contact-content">
-                    <h2>Let's Work Together</h2>
-                    <p>
-                        Open to AI/ML engineering roles, NLP projects, and Android development opportunities. 
-                        Available for consulting, collaboration, and full-time positions.
-                    </p>
-                </div>
-                <div class="contact-links">
-                    <a href="mailto:rmicaiahraj@gmail.com" class="contact-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                        <div>
-                            <span class="link-label">Email</span>
-                            <span class="link-value">rmicaiahraj@gmail.com</span>
-                        </div>
-                    </a>
-
-
-
-                    <a href="https://t.me/its_nobody_750" target="_blank" class="contact-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M21 12C21 16.97 16.97 21 12 21C7.03 21 3 16.97 3 12C3 7.03 7.03 3 12 3C16.97 3 21 7.03 21 12Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M16 12L12 8L8 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M12 8V16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <div>
-                            <span class="link-label">Telegram</span>
-                            <span class="link-value">@its_nobody_750</span>
-                        </div>
-                    </a>
-
-                    <a href="https://linkedin.com/in/micaiah-raj-r" target="_blank" class="contact-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                        <div>
-                            <span class="link-label">LinkedIn</span>
-                            <span class="link-value">micaiah-raj-r</span>
-                        </div>
-                    </a>
-
-                    <a href="https://micaiah.site" target="_blank" class="contact-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                            <path d="M2 12H22" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 2C14.5 4.5 16 8.5 16 12C16 15.5 14.5 19.5 12 22C9.5 19.5 8 15.5 8 12C8 8.5 9.5 4.5 12 2Z" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                        <div>
-                            <span class="link-label">Website</span>
-                            <span class="link-value">micaiah.site</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <img src="logo.jpg" alt="Logo" class="footer-logo">
-                    <p>© 2025 Micaiah Raj R<br>AI & ML Engineer</p>
-                </div>
-                <div class="footer-right">
-                    <p>Bengaluru, India</p>
-                    <p>Available for opportunities</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
