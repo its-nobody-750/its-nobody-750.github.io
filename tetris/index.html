@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Neon Tetris, a modern arcade game with stunning visual effects, neon-glowing tetrominoes, synthesized retro sound effects, and persistent local high scores.">
+    <title>Neon Tetris - The Ultimate Grid Runner</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Main CSS stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-background">
+        <!-- Floating background neon grids -->
+        <div class="bg-grid"></div>
+        <div class="bg-glow bg-glow-left"></div>
+        <div class="bg-glow bg-glow-right"></div>
+    </div>
+
+    <div class="app-container">
+        <header class="app-header">
+            <h1 id="game-title" class="glow-text">NEON TETRIS</h1>
+            <p class="subtitle">RETRO VIBES &bull; NEON SOUNDS</p>
+        </header>
+
+        <main class="game-area">
+            <!-- Left Sidebar: Hold Panel & Sound -->
+            <aside class="sidebar left-sidebar">
+                <section class="hud-panel glass-panel" id="hold-panel">
+                    <h2 class="panel-title">HOLD</h2>
+                    <div class="preview-box">
+                        <canvas id="hold-canvas" width="100" height="100"></canvas>
+                    </div>
+                </section>
+
+                <section class="hud-panel glass-panel" id="audio-panel">
+                    <h2 class="panel-title">SOUND</h2>
+                    <div class="audio-controls">
+                        <button id="mute-btn" class="icon-btn" aria-label="Toggle Sound">
+                            <!-- SVG Speaker Icon -->
+                            <svg id="speaker-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon">
+                                <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.874c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 001.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 00-1.06-1.06l-1.72 1.72-1.72-1.72z" />
+                            </svg>
+                        </button>
+                        <div class="slider-container">
+                            <input type="range" id="volume-slider" min="0" max="100" value="50" aria-label="Volume Slider">
+                            <span id="volume-val">50%</span>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Center: Game Board -->
+            <section class="board-container">
+                <div class="board-frame glass-panel">
+                    <canvas id="game-canvas" width="300" height="600"></canvas>
+
+                    <!-- Game Screen Overlay - Start Screen -->
+                    <div id="start-overlay" class="screen-overlay active">
+                        <div class="overlay-content">
+                            <h2 class="overlay-title glow-text-cyan">READY PLAYER ONE</h2>
+                            <p class="overlay-desc">Enter your grid name to begin your neon journey</p>
+                            <div class="input-container">
+                                <input type="text" id="player-name-input" maxlength="12" placeholder="GRID_RUNNER" value="GRID_RUNNER">
+                            </div>
+                            <button id="start-game-btn" class="action-btn glow-btn-cyan">START GAME</button>
+                        </div>
+                    </div>
+
+                    <!-- Game Screen Overlay - Pause Screen -->
+                    <div id="pause-overlay" class="screen-overlay">
+                        <div class="overlay-content">
+                            <h2 class="overlay-title glow-text-yellow">GAME PAUSED</h2>
+                            <p class="overlay-desc">Catch your breath, grid runner</p>
+                            <button id="resume-game-btn" class="action-btn glow-btn-yellow">RESUME</button>
+                        </div>
+                    </div>
+
+                    <!-- Game Screen Overlay - Game Over Screen -->
+                    <div id="game-over-overlay" class="screen-overlay">
+                        <div class="overlay-content">
+                            <h2 class="overlay-title glow-text-magenta animate-pulse">GAME OVER</h2>
+                            <p class="overlay-desc">You crashed into the grid ceiling!</p>
+                            <div class="final-score-box">
+                                <p class="final-score-label">FINAL SCORE</p>
+                                <p id="final-score-val" class="final-score-number text-glow-magenta">0</p>
+                            </div>
+                            <button id="restart-game-btn" class="action-btn glow-btn-magenta">PLAY AGAIN</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Sidebar: Score, Stats & Next Piece -->
+            <aside class="sidebar right-sidebar">
+                <section class="hud-panel glass-panel" id="next-panel">
+                    <h2 class="panel-title">NEXT</h2>
+                    <div class="preview-box">
+                        <canvas id="next-canvas" width="100" height="100"></canvas>
+                    </div>
+                </section>
+
+                <section class="hud-panel glass-panel" id="stats-panel">
+                    <div class="stat-row">
+                        <span class="stat-label">SCORE</span>
+                        <span id="score-display" class="stat-value text-glow-cyan">000000</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">LEVEL</span>
+                        <span id="level-display" class="stat-value text-glow-yellow">01</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">LINES</span>
+                        <span id="lines-display" class="stat-value text-glow-magenta">00</span>
+                    </div>
+                </section>
+
+                <section class="hud-panel glass-panel" id="leaderboard-panel">
+                    <h2 class="panel-title">LEADERBOARD</h2>
+                    <ol class="leaderboard-list" id="leaderboard-list">
+                        <!-- Populated by JavaScript -->
+                    </ol>
+                </section>
+            </aside>
+        </main>
+
+        <!-- Virtual controls overlay for mobile/mouse interaction -->
+        <section class="virtual-controls">
+            <button class="control-btn" id="ctrl-left" aria-label="Move Left">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+            <button class="control-btn" id="ctrl-rotate" aria-label="Rotate">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            </button>
+            <button class="control-btn" id="ctrl-right" aria-label="Move Right">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button class="control-btn" id="ctrl-hold" aria-label="Hold Piece">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 3H7a4 4 0 00-4 4v10a4 4 0 004 4h10a4 4 0 004-4V7a4 4 0 00-4-4zM8 11h8M12 7v8"/></svg>
+            </button>
+            <button class="control-btn" id="ctrl-down" aria-label="Soft Drop">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </button>
+            <button class="control-btn" id="ctrl-drop" aria-label="Hard Drop">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v16M5 11l7 7 7-7M19 22H5"/></svg>
+            </button>
+        </main>
+
+        <footer class="app-footer">
+            <p>Press <kbd>Space</kbd> for Hard Drop &bull; <kbd>Arrow Down</kbd> for Soft Drop &bull; <kbd>Arrow Up</kbd> for Rotate</p>
+            <p>Press <kbd>C</kbd> or <kbd>Shift</kbd> to Hold &bull; <kbd>Esc</kbd> or <kbd>P</kbd> to Pause</p>
+        </footer>
+    </div>
+
+    <!-- Script modules -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
