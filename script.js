@@ -1,72 +1,151 @@
-// Matrix Rain
-const canvas = document.getElementById('matrixCanvas');
-const ctx = canvas.getContext('2d');
+// Hero wireframe pineapple
+(function initPineapple() {
+    const canvas = document.getElementById('pineappleCanvas');
+    if (!canvas) return;
 
-let fontSize = 14;
-let columns, drops;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    columns = Math.floor(canvas.width / fontSize);
-    drops = Array(columns).fill(1);
-}
+    const RINGS = 9;
+    const SEGMENTS = 14;
+    const LEAF_COUNT = 11;
 
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
-const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%^&*()_+-=[]{}|;:,.<>?/~`';
-
-function drawMatrix() {
-    ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = '#00ff41';
-    ctx.font = `${fontSize}px monospace`;
-
-    for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-
-        ctx.fillStyle = Math.random() > 0.98 ? '#ffffff' : '#00ff41';
-        ctx.fillText(char, x, y);
-
-        if (y > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-        }
-        drops[i]++;
+    // Barrel profile: narrower at both ends, bulging in the middle
+    function bodyRadius(t) {
+        return 0.34 + 0.30 * Math.pow(Math.sin(Math.PI * t), 0.7);
     }
-}
 
-setInterval(drawMatrix, 50);
+    const body = [];
+    for (let i = 0; i <= RINGS; i++) {
+        const t = i / RINGS;
+        const y = (t - 0.5) * 1.5;
+        const r = bodyRadius(t);
+        const ring = [];
+        for (let j = 0; j < SEGMENTS; j++) {
+            const theta = (j / SEGMENTS) * Math.PI * 2;
+            ring.push({ x: r * Math.cos(theta), y, z: r * Math.sin(theta) });
+        }
+        body.push(ring);
+    }
 
-// Boot Sequence
-document.addEventListener('DOMContentLoaded', () => {
-    const bootLines = document.querySelectorAll('.boot-line');
-    bootLines.forEach((line, index) => {
-        const delay = parseInt(line.getAttribute('data-delay')) || index * 500;
-        setTimeout(() => {
-            line.style.animation = 'none';
-            line.style.opacity = '1';
-        }, delay);
-    });
+    const crownY = 0.5 * 1.5;
+    const LEAF_SECTIONS = 6;
+    const leaves = [];
+    for (let k = 0; k < LEAF_COUNT; k++) {
+        const theta = (k / LEAF_COUNT) * Math.PI * 2;
+        const baseR = 0.16;
+        const len = k % 2 === 0 ? 0.95 : 0.68;
+        const baseWidth = 0.17;
 
-    setTimeout(() => {
-        const bootSequence = document.getElementById('bootSequence');
-        const mainContent = document.getElementById('mainContent');
+        const left = [];
+        const right = [];
+        const mid = [];
+        for (let s = 0; s < LEAF_SECTIONS; s++) {
+            const t = s / (LEAF_SECTIONS - 1);
+            const u = len * 0.55 * t;
+            const v = crownY + len * t * (1 - 0.3 * t);
+            const r = baseR + u;
+            const halfWidth = (baseWidth / 2) * Math.pow(1 - t, 1.4);
+            const dTheta = halfWidth / Math.max(r, 0.05);
+            left.push({ x: r * Math.cos(theta - dTheta), y: v, z: r * Math.sin(theta - dTheta) });
+            right.push({ x: r * Math.cos(theta + dTheta), y: v, z: r * Math.sin(theta + dTheta) });
+            mid.push({ x: r * Math.cos(theta), y: v, z: r * Math.sin(theta) });
+        }
+        leaves.push({ left, right, mid });
+    }
 
-        document.addEventListener('keydown', () => {
-            bootSequence.style.display = 'none';
-            mainContent.style.opacity = '1';
+    let size = 0;
+    let angle = 0;
+
+    function resize() {
+        size = canvas.clientWidth || canvas.width;
+        canvas.width = size * dpr;
+        canvas.height = size * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function rotateY(p, a) {
+        const cosA = Math.cos(a), sinA = Math.sin(a);
+        return { x: p.x * cosA - p.z * sinA, y: p.y, z: p.x * sinA + p.z * cosA };
+    }
+
+    function project(p, scale) {
+        return { x: size / 2 + p.x * scale, y: size / 2 - p.y * scale };
+    }
+
+    function strokeEdge(p1, p2, scale, colorFn) {
+        const r1 = rotateY(p1, angle);
+        const r2 = rotateY(p2, angle);
+        const s1 = project(r1, scale);
+        const s2 = project(r2, scale);
+        const depth = Math.max(0.15, Math.min(1, ((r1.z + r2.z) / 2 + 0.6) / 1.2));
+        ctx.strokeStyle = colorFn(depth);
+        ctx.beginPath();
+        ctx.moveTo(s1.x, s1.y);
+        ctx.lineTo(s2.x, s2.y);
+        ctx.stroke();
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, size, size);
+        const scale = size * 0.34;
+
+        const bodyColor = (d) => `rgba(94, 200, 216, ${0.15 + d * 0.55})`;
+        const leafColor = (d) => `rgba(255, 140, 61, ${0.25 + d * 0.6})`;
+
+        ctx.lineWidth = 1;
+        for (let i = 0; i <= RINGS; i++) {
+            const ring = body[i];
+            for (let j = 0; j < SEGMENTS; j++) {
+                strokeEdge(ring[j], ring[(j + 1) % SEGMENTS], scale, bodyColor);
+            }
+        }
+
+        for (let i = 0; i < RINGS; i++) {
+            const a = body[i];
+            const b = body[i + 1];
+            for (let j = 0; j < SEGMENTS; j++) {
+                strokeEdge(a[j], b[(j + 1) % SEGMENTS], scale, bodyColor);
+                strokeEdge(a[j], b[(j - 1 + SEGMENTS) % SEGMENTS], scale, bodyColor);
+            }
+        }
+
+        ctx.lineWidth = 1.2;
+        leaves.forEach(({ left, right, mid }) => {
+            for (let s = 0; s < left.length - 1; s++) {
+                strokeEdge(left[s], left[s + 1], scale, leafColor);
+                strokeEdge(right[s], right[s + 1], scale, leafColor);
+                strokeEdge(mid[s], mid[s + 1], scale, leafColor);
+            }
+            for (let s = 0; s < left.length; s++) {
+                strokeEdge(left[s], right[s], scale, leafColor);
+            }
         });
+    }
 
-        document.addEventListener('click', () => {
-            bootSequence.style.display = 'none';
-            mainContent.style.opacity = '1';
+    resize();
+    window.addEventListener('resize', resize);
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+            resize();
+            if (prefersReducedMotion) draw();
         });
-    }, 3500);
-});
+    }
+
+    if (prefersReducedMotion) {
+        draw();
+        return;
+    }
+
+    function loop() {
+        angle += 0.006;
+        if (angle > Math.PI * 2) angle -= Math.PI * 2;
+        draw();
+        requestAnimationFrame(loop);
+    }
+    loop();
+})();
 
 // Typewriter Effect
 function typewriter(element, text, speed = 30) {
@@ -173,15 +252,15 @@ document.querySelectorAll('.timeline-card, .project-card, .skill-category, .high
     observer.observe(el);
 });
 
-// Parallax effect for orbs (keeping for bg-gradient)
+// Grid background parallax
+const gridBg = document.getElementById('gridBg');
 let ticking = false;
 window.addEventListener('scroll', () => {
     if (!ticking) {
         window.requestAnimationFrame(() => {
-            const scrolled = window.pageYOffset;
-            const bgGradient = document.querySelector('.bg-gradient');
-            if (bgGradient) {
-                bgGradient.style.transform = `translateY(${scrolled * 0.3}px)`;
+            if (gridBg) {
+                const offset = window.pageYOffset * 0.15;
+                gridBg.style.backgroundPosition = `${offset}px ${offset}px`;
             }
             ticking = false;
         });
@@ -193,32 +272,19 @@ window.addEventListener('scroll', () => {
 const nav = document.querySelector('.nav');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        nav.style.background = 'rgba(10, 10, 10, 0.98)';
-        nav.style.borderBottomColor = 'rgba(0, 255, 65, 0.2)';
+        nav.style.background = 'rgba(11, 22, 34, 0.98)';
+        nav.style.borderBottomColor = 'rgba(94, 200, 216, 0.25)';
     } else {
-        nav.style.background = 'rgba(10, 10, 10, 0.9)';
-        nav.style.borderBottomColor = 'rgba(0, 255, 65, 0.15)';
+        nav.style.background = 'rgba(11, 22, 34, 0.9)';
+        nav.style.borderBottomColor = 'rgba(94, 200, 216, 0.15)';
     }
 });
 
-// Random glitch effect on section titles
-setInterval(() => {
-    const titles = document.querySelectorAll('.section-title, .gradient-text');
-    titles.forEach(title => {
-        if (Math.random() > 0.97) {
-            title.style.textShadow = `${Math.random() > 0.5 ? '#00ff41' : '#ff3333'} ${Math.random() > 0.5 ? '2px' : '-2px'} 0 2px`;
-            setTimeout(() => {
-                title.style.textShadow = 'none';
-            }, 100);
-        }
-    });
-}, 3000);
-
 // Console easter egg
-console.log('%c┌─────────────────────────────────┐', 'color: #00ff41; font-family: monospace;');
-console.log('%c│  SYSTEM ACCESS: GRANTED          │', 'color: #00ff41; font-family: monospace;');
-console.log('%c│  USER: MICAIAH RAJ               │', 'color: #00ff41; font-family: monospace;');
-console.log('%c│  STATUS: PORTFOLIO LOADED        │', 'color: #00ff41; font-family: monospace;');
-console.log('%c│  "Talk is cheap. Show me the     │', 'color: #00ff41; font-family: monospace;');
-console.log('%c│   code." — Linus Torvalds        │', 'color: #00ff41; font-family: monospace;');
-console.log('%c└─────────────────────────────────┘', 'color: #00ff41; font-family: monospace;');
+console.log('%c+-----------------------------------+', 'color: #ff8c3d; font-family: monospace;');
+console.log('%c|  DWG NO. 001 -- REV. 2026          |', 'color: #ff8c3d; font-family: monospace;');
+console.log('%c|  DRAFTER: MICAIAH RAJ              |', 'color: #ff8c3d; font-family: monospace;');
+console.log('%c|  STATUS: PORTFOLIO LOADED          |', 'color: #ff8c3d; font-family: monospace;');
+console.log('%c|  "Talk is cheap. Show me the       |', 'color: #ff8c3d; font-family: monospace;');
+console.log('%c|   code." -- Linus Torvalds         |', 'color: #ff8c3d; font-family: monospace;');
+console.log('%c+-----------------------------------+', 'color: #ff8c3d; font-family: monospace;');
